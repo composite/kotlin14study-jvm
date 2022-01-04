@@ -5,23 +5,21 @@ fun main(args: Array<String>) {
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     println("Program arguments: ${args.joinToString()}")
 
-    // https://blog.jetbrains.com/kotlin/2020/07/kotlin-1-4-m3-generating-default-methods-in-interfaces/
-    val prod = BirdPerson()
-    val dele = DelegatedAlien(prod)
-    println("It speaks like alien language: " + dele.originSpeak())
-    println("It speaks like human language: " + dele.humanSpeak())
+    println("invokedynamic string concatenation")
+    println()
+    println(InvokedynamicStringConcatenation.concatenation1())
+    println(InvokedynamicStringConcatenation.concatenation2())
+    println(InvokedynamicStringConcatenation.concatenation3())
+    println()
+    println("Extensions for java.nio.file.Path")
+    println()
+    println("JavaNioPathExtension.getDirList:\n" + JavaNioPathExtension.getDirList())
+    println("JavaNioPathExtension.getSubTextFile:\n" + JavaNioPathExtension.getTextFile())
+    println()
+    println("Improved String.replace function performance")
+    println()
+    println("replaceSensitive: " + StringReplace.replaceSensitive())
+    println("replaceInsensitive: " + StringReplace.replaceInsensitive())
 
-    // https://kotlinlang.org/docs/whatsnew14.html#unified-exception-type-for-null-checks
-    var a: String? = "to be null"
-    if(true) a = null
-    try {
-        println("Trying to call with null: ${nullCall(a)}")
-    } catch (e: Exception) {
-        println("Exception ocurred! the class is: ${e.javaClass}")
-    }
-
-}
-
-fun nullCall(a: String?): Int {
-    return a!!.length
+    println("study finish?")
 }

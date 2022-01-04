@@ -13,10 +13,7 @@ repositories {
 }
 
 dependencies {
-    // https://kotlinlang.org/docs/whatsnew14.html#minimum-gradle-version-for-kotlin-projects
-    // https://kotlinlang.org/docs/gradle.html#dependency-on-the-standard-library
-    //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6")
-    // https://blog.jetbrains.com/kotlin/2020/02/improved-gradle-kts-ide-support/
+
 
     testImplementation(kotlin("test"))
 }
@@ -28,9 +25,10 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         //useIR = true
-        jvmTarget = "1.8"
-        freeCompilerArgs = listOf("-Xjvm-default=all-compatibility")
-        //freeCompilerArgs = listOf("-Xjvm-default=all")
+        jvmTarget = "11"
+        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=indy-with-constants")
+//        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=indy")
+//        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=inline")
     }
 }
 
