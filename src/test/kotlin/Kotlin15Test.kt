@@ -7,12 +7,19 @@ class Kotlin15Test : StringSpec() {
     init {
         // https://kotlinlang.org/docs/whatsnew15.html#sam-adapters-via-invokedynamic
         "SAM adapters via invokedynamic" {
-            val runnable = Runnable { println("This runs in a runnable") }
+            val a = 3
+            val runnable = Runnable { println("This runs in a runnable" + a) }
             runnable.run()
             val executor = ThreadPoolExecutor(1, 1, 1, TimeUnit.SECONDS, ArrayBlockingQueue(1))
             // Java signature: void execute(Runnable command)
             executor.execute { println("This runs in a thread pool") }
             executor.execute(Runnable { println("This also runs in a thread pool") })
+
+            LambdaRunner { println("asd") }
+            LambdaRunner { println("asd" + a) }
+
+            Runner.aaa()
+            Runner()
 
             // Creating an instance of a class
             val isEven1 = object : IntPredicate {
@@ -53,4 +60,21 @@ fun interface IntPredicate {
 interface Robot {
     fun move() { println("~walking~") }  // will be default in the Java interface
     fun speak(): Unit
+}
+
+class LambdaRunner(val f:() -> Unit):Runnable {
+    override fun run() {
+        f()
+    }
+}
+
+class Runner : Runnable {
+    override fun run() {
+        println()
+    }
+    companion object {
+        fun aaa() {
+
+        }
+    }
 }
