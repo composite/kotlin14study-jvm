@@ -1,7 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
-    kotlin("jvm") version "1.4.30"
+    kotlin("jvm") version "1.5.0"
     application
 }
 
@@ -14,7 +15,8 @@ repositories {
 
 dependencies {
 
-
+    // https://codechacha.com/ko/unittest-with-kotlintest-in-kotlin/
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation(kotlin("test"))
 }
 
@@ -24,11 +26,7 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        //useIR = true
         jvmTarget = "11"
-        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=indy-with-constants")
-//        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=indy")
-//        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xstring-concat=inline")
     }
 }
 
